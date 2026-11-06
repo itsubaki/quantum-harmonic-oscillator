@@ -1,4 +1,4 @@
-# Quantum Computer Using a Quantum Harmonic Oscillator
+# Quantum harmonic oscillator simulator for quantum computation
 
 A demo built with HTML, CSS, and JavaScript that implements CNOT through the free time evolution of a quantum harmonic oscillator.
 It uses the encoding and time evolution described in Nielsen & Chuang, *Quantum Computation and Quantum Information*, §7.3.
