@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Explore a quantum computer using a single quantum harmonic oscillator. Simulate CNOT through free time evolution and visualize wavefunctions, measurement probabilities, and state fidelity in your browser.">
+  <title>Quantum Computer Using a Quantum Harmonic Oscillator</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <main>
+    <div class="eyebrow">NIELSEN-CHUANG; QUANTUM COMPUTATION AND QUANTUM INFORMATION §7.3.3</div>
+    <h1>Quantum Computer Using a Quantum Harmonic Oscillator</h1>
+    <p class="intro">Encode <strong>two logical qubits</strong> in the energy eigenstates of a single quantum harmonic
+      oscillator. At τ = ωt = π, free time evolution gives only the occupied odd level |1〉 a relative phase of -1,
+      implementing CNOT. All calculations, including comparison with an ideal CNOT, run in <strong>JavaScript in your
+        browser</strong> without matrix operations.</p>
+    <div class="grid">
+      <section class="panel control">
+        <h2>Simulation Settings</h2>
+        <label for="input">Logical Input State
+          <select id="input">
+            <option value="plus">|+0〉 — Superposition (recommended)</option>
+            <option value="10">|10〉 — Observe the bit flip</option>
+            <option value="11">|11〉 — Observe the reverse flip</option>
+            <option value="00">|00〉 — Unchanged</option>
+            <option value="01">|01〉 — Unchanged</option>
+            <option value="uniform">|++〉 — Equal superposition</option>
+          </select>
+        </label>
+        <div>
+          <div class="time"><span>Dimensionless time τ = ωt</span><span id="tauValue">0.000</span></div>
+          <input type="range" aria-label="Dimensionless time τ = ωt" id="tau" min="0" max="6.283185307179586" step="any"
+            value="0">
+          <div class="time"><span>0</span><span>π</span><span>2π</span></div>
+        </div>
+        <div class="row">
+          <button id="zero">τ = 0</button>
+          <button class="primary" id="pi">τ = π: CNOT</button>
+        </div>
+        <button id="play" aria-pressed="false">▶ Play Time Evolution</button>
+        <div class="math">
+          |00〉ₗ = |0〉<br>
+          |01〉ₗ = |2〉<br>
+          |10〉ₗ = (|4〉+|1〉)/√2<br>
+          |11〉ₗ = (|4〉-|1〉)/√2<br>
+          <span style="color:#6bd9ad">U(τ)|n〉 = exp(-inτ)|n〉</span>
+        </div>
+        <div class="muted">Units: ℏ = m = ω = 1. The global phase exp(-iτ/2) is omitted (Eq. 7.13).</div>
+        <div id="error" role="alert"></div>
+      </section>
+      <section class="panel">
+        <h2>Position-Space Wavefunction</h2>
+        <div class="stats">
+          <div class="stat"><small>State fidelity with ideal CNOT output</small><strong class="good"
+              id="fidelity">—</strong></div>
+          <div class="stat"><small>Mean energy / ℏω</small><strong id="energy">—</strong></div>
+          <div class="stat"><small>Time τ / π</small><strong id="timeRatio">0.00</strong></div>
+        </div>
+        <canvas id="chart" aria-label="Position-space probability density and wavefunction"></canvas>
+        <div class="legend">
+          <span><i class="dot" style="background:var(--green)"></i>|ψ(x,τ)|²</span>
+          <span><i class="dot" style="background:var(--accent)"></i>Re ψ</span>
+          <span><i class="dot" style="background:var(--violet)"></i>Im ψ</span>
+        </div>
+        <p class="muted" style="margin-bottom:0">A single energy eigenstate has a stationary probability density. In a
+          superposition of multiple levels, interference in the wavefunction changes over time.</p>
+      </section>
+    </div>
+    <div class="two">
+      <section class="panel">
+        <h2>Logical Qubit Measurement Probabilities</h2>
+        <div id="logicalBars"></div>
+        <p class="muted">Use the fidelity above to check agreement with the ideal logical CNOT output at τ = π.</p>
+      </section>
+      <section class="panel eigen">
+        <h2>Oscillator Energy-Level Populations</h2>
+        <div id="levelBars"></div>
+        <p class="muted">Free time evolution changes only phases, so the level populations remain constant. This
+          encoding does not use |3〉.</p>
+      </section>
+    </div>
+    <p class="note"><strong>Physical limitations:</strong> This model reproduces the ideal encoding and free time
+      evolution in Eqs. (7.13)-(7.15) of the textbook. Wavefunction and fidelity visualizations are additional features.
+      It does not model hardware for arbitrary initial-state preparation, measurement, or sequences of arbitrary gates,
+      and is not a practical, general-purpose quantum computer.</p>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>

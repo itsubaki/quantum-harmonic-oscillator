@@ -31,3 +31,8 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Vercel local project metadata
+.vercel/
+node_modules/
+.DS_Store
