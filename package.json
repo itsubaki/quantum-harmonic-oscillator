@@ -1,5 +1,5 @@
 {
-  "name": "oscillator",
+  "name": "quantum-harmonic-oscillator",
   "private": true,
   "type": "module",
   "scripts": {
