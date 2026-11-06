@@ -3,13 +3,13 @@ import { simulate } from "./oscillator.js";
 (() => {
   const $ = id => document.getElementById(id);
   const tau = $('tau'), input = $('input');
-  const labels = ['|00〉', '|01〉', '|10〉', '|11〉'];
+  const labels = ['|00⟩', '|01⟩', '|10⟩', '|11⟩'];
   let playing = false, lastFrame = 0, animationFrame = null, lastSnapshot = null;
   function bars(container, names) {
     container.innerHTML = '';
     for (let i = 0; i < names.length; i++) {
       const line = document.createElement('div'); line.className = 'bar-item';
-      const label = document.createElement('span'); label.textContent = names[i];
+      const label = document.createElement('span'); label.className = 'ket'; label.textContent = names[i];
       const bg = document.createElement('div'); bg.className = 'bar-bg';
       const fill = document.createElement('div'); fill.className = 'bar-fill'; bg.appendChild(fill);
       const val = document.createElement('span'); val.className = 'val'; val.textContent = '—';
@@ -17,7 +17,7 @@ import { simulate } from "./oscillator.js";
     }
   }
   bars($('logicalBars'), labels);
-  bars($('levelBars'), Array.from({ length: 5 }, (_, n) => `|${n}〉`));
+  bars($('levelBars'), Array.from({ length: 5 }, (_, n) => `|${n}⟩`));
   function fillBars(container, values) {
     const rows = container.children;
     values.forEach((v, i) => {

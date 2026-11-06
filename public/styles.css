@@ -9,6 +9,7 @@
     --green: #6bd9ad;
     --violet: #b59afa;
     --orange: #ffbf77;
+    --math-font: "STIX Two Math", "Cambria Math", "STIXGeneral", "Times New Roman", serif;
 }
 
 * {
@@ -94,6 +95,9 @@ button {
 select {
     width: 100%;
     margin-top: 7px;
+    font-family: var(--math-font);
+    font-size: 16px;
+    font-weight: 400;
 }
 
 button:hover {
@@ -142,7 +146,47 @@ input[type=range] {
     background: #0b1420;
     border: 1px solid #28374e;
     border-radius: 10px;
-    font: 13px/1.9 ui-monospace, Consolas, monospace;
+    display: grid;
+    gap: 14px;
+}
+
+.math math {
+    justify-content: start;
+    margin: 0;
+    font-size: 18px;
+}
+
+.math .encoding {
+    font-size: 14px;
+}
+
+.encoding mtd {
+    height: 3.3em;
+    padding: .35em .25em;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.encoding mtd:first-child {
+    padding-left: 0;
+}
+
+.encoding mtd:nth-child(4) {
+    padding-left: 1em;
+}
+
+.evolution {
+    padding-top: 12px;
+    border-top: 1px solid var(--edge);
+    color: var(--green);
+}
+
+.ket,
+.wave-label {
+    font-family: var(--math-font);
+    font-size: 1.15em;
+    font-weight: 400;
+    white-space: nowrap;
 }
 
 .muted {
@@ -288,5 +332,11 @@ canvas {
 
     .stat strong {
         font-size: 19px;
+    }
+}
+
+@media(max-width:360px) {
+    .math .encoding {
+        font-size: 12px;
     }
 }
